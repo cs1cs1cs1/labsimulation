@@ -1,6 +1,7 @@
 import runWorld as rw
 import drawWorld as dw
 import pygame as pg
+from random import randint 
 
 ################################################################
 
@@ -46,7 +47,7 @@ myimage = dw.loadImage("cat.bmp")
 #
 def updateDisplay(state):
     dw.fill(dw.black)
-    dw.draw(myimage, (state[0], height/2))
+    dw.draw(myimage, (state[0], randint(0,499)))
 
 
 ################################################################
@@ -58,7 +59,7 @@ def updateDisplay(state):
 #
 # state -> state
 def updateState(state):
-    return((state[0]+state[1],state[1]))
+    return((state[0] + randint(1,5),state[1] + randint(1,5)))
 
 ################################################################
 
@@ -101,10 +102,10 @@ def handleEvent(state, event):
 # World state will be single x coordinate at left edge of world
 
 # The cat starts at the left, moving right 
-initState = (0,1)
+initState = (0,1,1,1)
 
 # Run the simulation no faster than 60 frames per second
-frameRate = 60
+frameRate = 30
 
 # Run the simulation!
 rw.runWorld(initState, updateDisplay, updateState, handleEvent,
